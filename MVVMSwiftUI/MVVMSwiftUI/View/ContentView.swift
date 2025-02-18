@@ -28,7 +28,9 @@ struct ContentView: View {
                 } else {
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(viewModel.posts) { post in
-                            PostCell(post: post)
+                            NavigationLink(destination: PostDetailView(post: post)) {
+                                PostCell(post: post)
+                            }
                         }
                     }
                     .padding()

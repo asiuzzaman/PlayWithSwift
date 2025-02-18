@@ -17,6 +17,9 @@ struct PostDetailView: View {
                 Text(post.title)
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                Text(String(post.id))
+                    .font(.headline)
+                    .foregroundColor(.blue)
                 Text(post.body)
                     .font(.body)
                     .foregroundColor(.secondary)
@@ -25,4 +28,8 @@ struct PostDetailView: View {
         }
         .navigationTitle("Post Details")
     }
+}
+
+#Preview {
+    PostDetailView(post: Post(id: 3, title: "Title of the content", body: "The is detail content")).navigationBarTitleDisplayMode(.inline)
 }
