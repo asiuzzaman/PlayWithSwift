@@ -29,7 +29,7 @@ struct ContentView: View {
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(viewModel.posts) { post in
                             NavigationLink(destination: PostDetailView(post: post)) {
-                                PostCell(post: post)
+                                PostCell(post: post, color: Color.random()) // Pass a random color
                             }
                         }
                     }

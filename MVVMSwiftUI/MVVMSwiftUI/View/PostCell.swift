@@ -10,6 +10,7 @@ import SwiftUICore
 // Custom cell for each post
 struct PostCell: View {
     let post: Post
+    let color: Color // Add a color property
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -22,7 +23,7 @@ struct PostCell: View {
                 .foregroundColor(.secondary)
         }
         .padding()
-        .background(Color(.systemBackground))
+        .background(color) // Use the color as the background
         .cornerRadius(10)
         .shadow(radius: 2)
     }
