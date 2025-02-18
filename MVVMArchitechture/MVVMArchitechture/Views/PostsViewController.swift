@@ -2,7 +2,8 @@
 import UIKit
 
 class PostsViewController: UIViewController {
-    private var collectionView: UICollectionView!
+   // private var collectionView: UICollectionView!
+    @IBOutlet weak var postCollectionView: UICollectionView!
     private var viewModel = PostsViewModel()
 
     override func viewDidLoad() {
@@ -15,19 +16,18 @@ class PostsViewController: UIViewController {
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: view.frame.width - 20, height: 100)
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(PostCollectionViewCell.self, forCellWithReuseIdentifier: PostCollectionViewCell.identifier)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        view.addSubview(collectionView)
-        collectionView.frame = view.bounds
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize // Enable self-sizing cells
+        postCollectionView.collectionViewLayout = layout
+        postCollectionView.dataSource = self
+        postCollectionView.delegate = self
     }
 
     private func bindViewModel() {
         viewModel.reloadCollectionView = { [weak self] in
             DispatchQueue.main.async {
-                self?.collectionView.reloadData()
+                self?.postCollectionView.reloadData()
             }
         }
     }
@@ -44,6 +44,7 @@ extension PostsViewController: UICollectionViewDataSource, UICollectionViewDeleg
         }
         let post = viewModel.posts[indexPath.row]
         cell.configure(with: post)
+        cell.setRandomColor()
         return cell
     }
 }
