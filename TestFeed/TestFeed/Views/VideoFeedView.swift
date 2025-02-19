@@ -24,7 +24,20 @@ struct VideoFeedView: View {
                 } else {
                     LazyVStack(spacing: 16) {
                         ForEach(viewModel.videos) { video in
-                            VideoCard(video: video)
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(video.title)
+                                    .font(.headline)
+                                Text(video.description)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                VideoPlayerView(videoURL: video.videoURL)
+                                    .frame(height: 200)
+                                    .cornerRadius(10)
+                            }
+                            .padding()
+                            .background(Color(.systemBackground))
+                            .cornerRadius(10)
+                            .shadow(radius: 2)
                         }
                     }
                     .padding()
@@ -32,23 +45,5 @@ struct VideoFeedView: View {
             }
             .navigationTitle("Video Feed")
         }
-    }
-}
-
-struct VideoCard: View {
-    let video: VideoFeedItem
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(video.title)
-                .font(.headline)
-            Text(video.description)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-        }
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(10)
-        .shadow(radius: 2)
     }
 }
