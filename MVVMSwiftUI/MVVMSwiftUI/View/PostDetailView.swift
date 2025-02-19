@@ -17,12 +17,13 @@ struct PostDetailView: View {
                 Text(post.title)
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                Text(String(post.id))
-                    .font(.headline)
-                    .foregroundColor(.blue)
-                Text(post.body)
-                    .font(.body)
-                    .foregroundColor(.secondary)
+                HStack {
+                    Text(" \(post.id ).")
+                        .font(.title)
+                        .foregroundStyle(.blue)
+                    Text(post.body)
+                        .foregroundStyle(.red)
+                }
             }
             .padding()
         }
